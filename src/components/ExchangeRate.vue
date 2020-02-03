@@ -8,16 +8,21 @@ export default {
   }),
   methods: {
     getExchangeRate() {
-      this.$http.get(this.$API + "/exchange-rate");
+      return this.$http.get(this.$API + "/exchange-rate");
     }
   },
 
   created() {
     this.getExchangeRate()
       .then(er => {
+        console.log("sem prob");
+
         this.exchangeRateQueue = er.data.exchangeRateQueue;
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log("entrei erro");
+        console.log(error);
+      });
   }
 };
 </script>
