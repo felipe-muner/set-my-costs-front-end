@@ -1,10 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      :clipped="$vuetify.breakpoint.lgAndUp"
-      app
-    >
+    <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
       <v-list dense>
         <template v-for="item in items">
           <v-row v-if="item.heading" :key="item.heading" align="center">
@@ -48,12 +44,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      :clipped-left="$vuetify.breakpoint.lgAndUp"
-      app
-      color="blue darken-3"
-      dark
-    >
+    <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <span class="hidden-sm-and-down">Expense Central</span>
@@ -75,10 +66,7 @@
       </v-btn>
       <v-btn icon large>
         <v-avatar size="32px" item>
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-            alt="Vuetify"
-          />
+          <v-img src="https://cdn.vuetifyjs.com/images/logos/logo.svg" alt="Vuetify" />
         </v-avatar>
       </v-btn>
     </v-app-bar>
@@ -98,19 +86,13 @@
             <v-col class="align-center justify-space-between" cols="12">
               <v-row align="center" class="mr-0">
                 <v-avatar size="40px" class="mx-3">
-                  <img
-                    src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png"
-                    alt
-                  />
+                  <img src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png" alt />
                 </v-avatar>
                 <v-text-field placeholder="Name" />
               </v-row>
             </v-col>
             <v-col cols="6">
-              <v-text-field
-                prepend-icon="mdi-account-card-details-outline"
-                placeholder="Company"
-              />
+              <v-text-field prepend-icon="mdi-account-card-details-outline" placeholder="Company" />
             </v-col>
             <v-col cols="6">
               <v-text-field placeholder="Job title" />
@@ -119,11 +101,7 @@
               <v-text-field prepend-icon="mdi-mail" placeholder="Email" />
             </v-col>
             <v-col cols="12">
-              <v-text-field
-                type="tel"
-                prepend-icon="mdi-phone"
-                placeholder="(000) 000 - 0000"
-              />
+              <v-text-field type="tel" prepend-icon="mdi-phone" placeholder="(000) 000 - 0000" />
             </v-col>
             <v-col cols="12">
               <v-text-field prepend-icon="mdi-text" placeholder="Notes" />
@@ -151,7 +129,7 @@ export default {
     drawer: null,
     items: [
       { icon: "mdi-contacts", text: "Option 1", link: "/" },
-      { icon: "mdi-history", text: "Option 2", link: "/about" },
+      { icon: "mdi-history", text: "Cost Center", link: "/cost-center" },
       {
         icon: "mdi-content-copy",
         text: "Exchange Rate",

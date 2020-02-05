@@ -24,6 +24,12 @@ const routes = [
     name: "exchangerate",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/ExchangeRate.vue")
+  },
+  {
+    path: "/cost-center",
+    name: "costcenter",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/CostCenter.vue")
   }
 ];
 

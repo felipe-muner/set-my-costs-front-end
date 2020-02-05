@@ -7,7 +7,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   strict: true,
   state: {
-    rates: [{}]
+    rates: [{}],
+    costCenter: [],
+    obj: { message: "" },
+    nameCostCenter: ""
   },
   getters: {
     getRates(state) {
@@ -15,11 +18,20 @@ export default new Vuex.Store({
     },
     getRateDay(state) {
       return moment(state.rates[0].RegisterDate).format("YYYY-MM-DD");
+    },
+    getCostCenter(state) {
+      return state.costCenter;
     }
   },
   mutations: {
+    updateName(state, val) {
+      state.nameCostCenter = val;
+    },
     SAVE_RATES(state, rates) {
       state.rates = rates;
+    },
+    SAVE_COST_CENTER(state, costCenter) {
+      state.costCenter = costCenter;
     }
   },
   actions: {
@@ -29,6 +41,19 @@ export default new Vuex.Store({
       );
       const rates = response.data;
       commit("SAVE_RATES", rates);
+    },
+    async loadCostCenter({ commit }) {
+      const response = await this._vm.$http.get(this._vm.$API + "/cost-center");
+      const costCenter = response.data;
+      commit("SAVE_COST_CENTER", costCenter);
+    },
+    async saveCostCenter({ commit, state }) {
+      const response = await this._vm.$http.post(
+        this._vm.$API + "/cost-center/save",
+        { Name: state.nameCostCenter }
+      );
+      const costCenter = response.data;
+      commit("SAVE_COST_CENTER", costCenter);
     }
   },
   modules: {}
