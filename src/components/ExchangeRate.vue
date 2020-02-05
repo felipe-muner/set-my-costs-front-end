@@ -1,12 +1,18 @@
 <template>
   <div>
-    <v-alert
-      type="prominent"
-      border="left"
-      color="green"
-      icon="mdi-account"
-      transition="slide-y-reverse-transition"
-    >Rates day : {{getRates}}</v-alert>
+    <v-container>
+      <v-row no-gutters>
+        <v-col></v-col>
+        <v-col>
+          <v-alert color="#2A3B4D" dark icon="mdi-money">
+            Rates Day:
+            {{ getRateDay }}
+          </v-alert>
+        </v-col>
+        <v-col></v-col>
+      </v-row>
+    </v-container>
+
     <br />
     <v-container>
       <v-row no-gutters>
@@ -45,7 +51,7 @@ export default {
     ]
   }),
   computed: {
-    ...mapGetters(["getRates"])
+    ...mapGetters(["getRates", "getRateDay"])
   },
   methods: {
     ...mapActions(["loadRates"])

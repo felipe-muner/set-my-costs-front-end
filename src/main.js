@@ -4,11 +4,13 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import axios from "axios";
+import moment from "moment";
 
 Vue.config.productionTip = false;
 
 Vue.prototype.$API = "http://localhost:3000";
 Vue.prototype.$http = axios;
+Vue.prototype.$moment = moment;
 
 new Vue({
   router,
