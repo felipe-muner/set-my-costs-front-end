@@ -120,6 +120,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: {
     source: String
@@ -138,6 +139,9 @@ export default {
     ]
   }),
   methods: {},
+  computed: {
+    ...mapGetters(["getCostCenter"])
+  },
   created() {}
 };
 </script>

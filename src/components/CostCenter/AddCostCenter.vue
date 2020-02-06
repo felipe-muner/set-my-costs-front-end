@@ -24,18 +24,29 @@
           </v-menu>
         </v-card-title>
         <v-container grid-list-md>
+          <!-- <form>
+            <v-text-field
+              v-model="name"
+              :error-messages="nameErrors"
+              :counter="10"
+              label="Name"
+              required
+            ></v-text-field>        
+            <v-btn class="mr-4" @click="submit">submit</v-btn>
+          </form> -->
           <v-form v-model="valid" ref="form" lazy-validation>
             <v-layout row wrap>
               <v-flex xs12 class="pt-0">
                 <v-text-field
                   label="Name"
-                  v-model="nameCostCenter"
+                  v-model="$store.state.costCenter.nameCostCenter"
                   :rules="NameRules"
                   type="text"
                 ></v-text-field>
               </v-flex>
             </v-layout>
-            --<input v-model="nameCostCenter" />-- {{ nameCostCenter }}
+            {{$store.state.costCenter.nameCostCenter}}
+            --<input v-model="$store.state.costCenter.nameCostCenter" />
             <v-layout row wrap>
               <v-flex xs12 class="text-xs-right">
                 <v-btn @click="submitForm" :disabled="!valid" color="primary">
@@ -63,10 +74,10 @@ export default {
   computed: {
     nameCostCenter: {
       get() {
-        return this.$store.state.nameCostCenter;
+        return this.$store.state.costCenter.nameCostCenter;
       },
-      set(value) {
-        this.$store.commit("updateName", value);
+      set(e) {
+        this.$store.commit("updateName", e.value.target);
       }
     }
   },
