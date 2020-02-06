@@ -1,29 +1,23 @@
 <template lang="html">
   <div class="">
-    <v-tooltip top>
-      <v-btn
-        @click.native.stop="dialog = true"
-        small
-        color="success"
-        slot="activator"
-        fab
-      >
-        <v-icon>add</v-icon>
-      </v-btn>
-      <span>Add</span>
-    </v-tooltip>
-    <v-dialog class="modalFilter" v-model="dialog" max-width="30%">
+    <v-dialog
+      v-model="myDialog"
+      width="40%"
+    >
+      <template v-slot:activator="{ on }">
+        <v-btn @click.native.stop="myDialog = true" small color="success" fab v-on="on">
+          <v-icon>add</v-icon>
+        </v-btn>
+      </template>
       <v-card>
-        <v-card-title class="py-0">
-          <span>Add Cost Center</span>
-          <v-spacer></v-spacer>
-          <v-menu bottom left>
-            <v-btn icon slot="activator" @click.stop="dialog = false">
-              <v-icon>close</v-icon>
-            </v-btn>
-          </v-menu>
+        <v-card-title
+          class="headline grey lighten-2"
+          primary-title
+        >
+          Privacy Policy
         </v-card-title>
-        <v-container grid-list-md>
+        <v-card-text>
+          <v-container grid-list-md>
           <v-form v-model="valid" ref="form" lazy-validation>
             <v-layout row wrap>
               <v-flex xs12 class="pt-0">
@@ -46,6 +40,8 @@
             </v-layout>
           </v-form>
         </v-container>
+        </v-card-text>
+        <v-divider></v-divider>
       </v-card>
     </v-dialog>
   </div>
@@ -56,6 +52,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      myDialog: false,
       dialog: false,
       Name: "",
       NameRules: [v => !!v || "Name is required"],
@@ -77,13 +74,12 @@ export default {
     submitForm() {
       if (this.$refs.form.validate()) {
         this.saveCostCenter();
-        this.dialog = false;
+        this.myDialog = false;
+        this.$refs.form.reset();
       }
     }
   },
-  created() {
-    console.log("created");
-  }
+  created() {}
 };
 </script>
 
