@@ -24,29 +24,19 @@
           </v-menu>
         </v-card-title>
         <v-container grid-list-md>
-          <!-- <form>
-            <v-text-field
-              v-model="name"
-              :error-messages="nameErrors"
-              :counter="10"
-              label="Name"
-              required
-            ></v-text-field>        
-            <v-btn class="mr-4" @click="submit">submit</v-btn>
-          </form> -->
           <v-form v-model="valid" ref="form" lazy-validation>
             <v-layout row wrap>
               <v-flex xs12 class="pt-0">
                 <v-text-field
                   label="Name"
-                  v-model="$store.state.costCenter.nameCostCenter"
+                  v-model="nameCostCenter"
                   :rules="NameRules"
                   type="text"
                 ></v-text-field>
               </v-flex>
             </v-layout>
-            {{$store.state.costCenter.nameCostCenter}}
-            --<input v-model="$store.state.costCenter.nameCostCenter" />
+            <input v-model="nameCostCenter" />
+            {{nameCostCenter}}
             <v-layout row wrap>
               <v-flex xs12 class="text-xs-right">
                 <v-btn @click="submitForm" :disabled="!valid" color="primary">
@@ -62,6 +52,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -76,18 +67,22 @@ export default {
       get() {
         return this.$store.state.costCenter.nameCostCenter;
       },
-      set(e) {
-        this.$store.commit("updateName", e.value.target);
+      set(val) {
+        this.$store.commit("updateName", val);
       }
     }
   },
   methods: {
+    ...mapActions(["saveCostCenter"]),
     submitForm() {
       if (this.$refs.form.validate()) {
-        this.$store.dispatch("saveCostCenter");
+        this.saveCostCenter();
         this.dialog = false;
       }
     }
+  },
+  created() {
+    console.log("created");
   }
 };
 </script>
