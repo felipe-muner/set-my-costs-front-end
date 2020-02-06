@@ -1,3 +1,5 @@
+import myApi from "../../api/myApi";
+
 export default {
   namespace: true,
   state: {
@@ -6,6 +8,7 @@ export default {
   },
   getters: {
     getCostCenter(state) {
+      console.log(myApi.moment().format("YYYY-MM-DD"));
       return state.costCenter;
     }
   },

@@ -1,9 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="c in getCostCenter" v-bind:key="c.CostCenterID">
-        {{ c }}
-      </li>
+      <li v-for="c in getCostCenter" v-bind:key="c.CostCenterID">{{ c }}</li>
     </ul>
   </div>
 </template>
@@ -22,7 +20,9 @@ export default {
     ...mapActions(["loadCostCenter"])
   },
   created() {
-    this.$store.dispatch("loadCostCenter");
+    console.log("costcenter");
+
+    this.loadCostCenter();
   }
 };
 </script>
