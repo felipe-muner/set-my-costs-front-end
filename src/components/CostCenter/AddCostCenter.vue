@@ -14,7 +14,7 @@
           class="headline grey lighten-2"
           primary-title
         >
-          Privacy Policy
+          Create Cost Center
         </v-card-title>
         <v-card-text>
           <v-container grid-list-md>
