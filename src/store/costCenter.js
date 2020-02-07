@@ -1,4 +1,4 @@
-import myApi from "../../api/myApi";
+import costCenterAPI from "../../api/costCenter";
 
 export default {
   namespace: true,
@@ -8,7 +8,6 @@ export default {
   },
   getters: {
     getCostCenter(state) {
-      console.log(myApi.moment().format("YYYY-MM-DD"));
       return state.costCenter;
     }
   },
@@ -22,15 +21,12 @@ export default {
   },
   actions: {
     async loadCostCenter({ commit }) {
-      const response = await this._vm.$http.get(this._vm.$API + "/cost-center");
+      const response = await costCenterAPI.loadCostCenter();
       const costCenter = response.data;
       commit("SAVE_COST_CENTER", costCenter);
     },
     async saveCostCenter({ commit, state }) {
-      const response = await this._vm.$http.post(
-        this._vm.$API + "/cost-center/save",
-        { Name: state.nameCostCenter }
-      );
+      const response = await costCenterAPI.saveCostCenter(state);
       const costCenter = response.data;
       commit("SAVE_COST_CENTER", costCenter);
     }

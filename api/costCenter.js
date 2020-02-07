@@ -1,12 +1,14 @@
-import moment from "moment";
-import axios from "axios";
 import myApi from "./myApi";
 
 export default {
-  nome: "felipe",
-  getAll: () => {
-    console.log(myApi);
-    console.log(moment);
-    console.log(axios);
+  loadCostCenter: function() {
+    const response = myApi.axios.get(myApi.server + "/cost-center");
+    return response;
+  },
+  saveCostCenter: function(state) {
+    const response = myApi.axios.post(myApi.server + "/cost-center/save", {
+      Name: state.nameCostCenter
+    });
+    return response;
   }
 };

@@ -1,4 +1,4 @@
-import moment from "moment";
+import myApi from "../../api/myApi";
 
 export default {
   namespace: true,
@@ -10,7 +10,7 @@ export default {
       return state.rates;
     },
     getRateDay(state) {
-      return moment(state.rates[0].RegisterDate).format("YYYY-MM-DD");
+      return myApi.moment(state.rates[0].RegisterDate).format("YYYY-MM-DD");
     }
   },
   mutations: {
@@ -20,9 +20,7 @@ export default {
   },
   actions: {
     async loadRates({ commit }) {
-      const response = await this._vm.$http.get(
-        this._vm.$API + "/exchange-rate"
-      );
+      const response = await myApi.axios.get(myApi.server + "/exchange-rate");
       const rates = response.data;
       commit("SAVE_RATES", rates);
     }

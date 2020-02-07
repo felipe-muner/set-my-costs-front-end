@@ -2,7 +2,7 @@ import moment from "moment";
 import axios from "axios";
 
 export default {
-  $API: "felipe",
-  axios,
-  moment
+  server: "http://localhost:3000",
+  moment,
+  axios
 };

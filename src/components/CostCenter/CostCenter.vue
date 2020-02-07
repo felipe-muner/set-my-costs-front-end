@@ -20,8 +20,6 @@ export default {
     ...mapActions(["loadCostCenter"])
   },
   created() {
-    console.log("costcenter");
-
     this.loadCostCenter();
   }
 };
