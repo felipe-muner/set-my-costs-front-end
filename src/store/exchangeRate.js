@@ -20,7 +20,7 @@ export default {
   },
   actions: {
     async loadRates({ commit }) {
-      const response = await myApi.axios.get(myApi.server + "/exchange-rate");
+      const response = await myApi.exchangeRate.loadRates(myApi);
       const rates = response.data;
       commit("SAVE_RATES", rates);
     }
