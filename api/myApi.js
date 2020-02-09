@@ -1,15 +1,8 @@
-import moment from "moment";
-import axios from "axios";
-import exchangeRate from "./exchangeRate";
-import costCenter from "./costCenter";
+import ExchangeRate from "./ExchangeRate";
+import CostCenter from "./CostCenter";
 import config from "./config";
 
-function myApi() {
-  this.server = config.server;
-  this.axios = axios;
-  this.moment = moment;
-  this.costCenter = costCenter;
-  this.exchangeRate = exchangeRate;
-}
-
-export default new myApi();
+export default {
+  costCenter: new CostCenter(config.server),
+  exchangeRate: new ExchangeRate(config.server)
+};

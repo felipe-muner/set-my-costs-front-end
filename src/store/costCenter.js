@@ -1,6 +1,4 @@
-import myApi from "../../api/myApi";
-
-console.log(myApi);
+import MyApi from "../../api/MyApi";
 
 export default {
   namespace: true,
@@ -23,12 +21,12 @@ export default {
   },
   actions: {
     async loadCostCenter({ commit }) {
-      const response = await myApi.costCenter.loadCostCenter();
+      const response = await MyApi.costCenter.loadCostCenter();
       const costCenter = response.data;
       commit("SAVE_COST_CENTER", costCenter);
     },
     async saveCostCenter({ commit, state }) {
-      const response = await myApi.costCenter.saveCostCenter(state);
+      const response = await MyApi.costCenter.saveCostCenter(state);
       const costCenter = response.data;
       commit("SAVE_COST_CENTER", costCenter);
     }

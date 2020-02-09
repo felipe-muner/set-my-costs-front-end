@@ -1,4 +1,5 @@
-import myApi from "../../api/myApi";
+import moment from "moment";
+import MyApi from "../../api/MyApi";
 
 export default {
   namespace: true,
@@ -10,7 +11,7 @@ export default {
       return state.rates;
     },
     getRateDay(state) {
-      return myApi.moment(state.rates[0].RegisterDate).format("YYYY-MM-DD");
+      return moment(state.rates[0].RegisterDate).format("YYYY-MM-DD");
     }
   },
   mutations: {
@@ -20,7 +21,8 @@ export default {
   },
   actions: {
     async loadRates({ commit }) {
-      const response = await myApi.exchangeRate.loadRates(myApi);
+      MyApi.exchangeRate.testFunction();
+      const response = await MyApi.exchangeRate.loadRates();
       const rates = response.data;
       commit("SAVE_RATES", rates);
     }
